@@ -44,12 +44,12 @@ async def send_local_video(message: Message):
             await bot.ban_chat_member(chat_id=-1002420776698, user_id=int(args[1]))
             await bot.send_message(f"User "+args[1]+" has been banned from the channel.")
         except Exception as e:
-            await bot.send_message(chat_id=7674917466,text="Failed to ban user: "+{e})
+            await bot.send_message(chat_id=7674917466,text="Failed to ban user: "+str(e))
         try:
             await bot.ban_chat_member(chat_id=-1002682344927, user_id=int(args[1]))
             await bot.send_message(chat_id=7674917466,text="User "+args[1]+" has been banned from the vouches.")
         except Exception as e:
-            await bot.send_message(chat_id=7674917466,text="Failed to ban user: {e}")
+            await bot.send_message(chat_id=7674917466,text="Failed to ban user: "+str(e))
 @dp.message(Command("start"))
 async def send_local_video(message: Message):
     iduser = str(message.from_user.id)
@@ -206,12 +206,12 @@ async def send_local_video(message: Message): #NEED WORK
                     await bot.ban_chat_member(chat_id=-1002420776698, user_id=int(user_id))
                     await bot.send_message(chat_id=7674917466,text="User "+user_id+" has been banned from the channel.")
                 except Exception as e:
-                    await bot.send_message(chat_id=7674917466,text="Failed to ban user: "+e)
+                    await bot.send_message(chat_id=7674917466,text="Failed to ban user: "+str(e))
                 try:
                     await bot.ban_chat_member(chat_id=-1002682344927, user_id=int(user_id))
                     await bot.send_message(chat_id=7674917466,text="User "+user_id+" has been banned from the vouches.")
                 except Exception as e:
-                     await bot.send_message(chat_id=7674917466,text="Failed to ban user: "+e)
+                     await bot.send_message(chat_id=7674917466,text="Failed to ban user: "+str(e))
             else:
                 sleep(1)
                 await message.answer("⌛ Please wait.")
@@ -477,14 +477,11 @@ async def handle_vote1(callback: CallbackQuery, bot: Bot):
         ],
         [
             InlineKeyboardButton(text="💲 USDT", callback_data="usdt"),
-            InlineKeyboardButton(text="♢ ETH", callback_data="eth")
+            InlineKeyboardButton(text="₿ BTC", callback_data="btc")
         ],
         [
             InlineKeyboardButton(text="𝑳 LTC", callback_data="ltc"),
             InlineKeyboardButton(text="◎ SOL", callback_data="sol")
-        ],
-        [
-            InlineKeyboardButton(text="₿ BTC", callback_data="btc")
         ]
     ]
     )
@@ -687,24 +684,6 @@ async def handle_vote1(callback: CallbackQuery):
     await callback.message.answer("""*Solana \(SOL\)*
                                   
 • `8Ra9HKVrKNakEeQfqDzrVn1sFoQoFmbR51UHMRweT9hY`""",parse_mode='MarkdownV2', reply_markup=keyboard)
-
-
-@dp.callback_query(F.data.in_(["eth"]))
-async def handle_vote1(callback: CallbackQuery):
-    keyboard = InlineKeyboardMarkup(
-    inline_keyboard=[
-        [
-        InlineKeyboardButton(text="📞 Support", url="https://t.me/dragonotpowner")
-        ],
-        [
-            InlineKeyboardButton(text="🔙 BACK TO MENU", callback_data="start")
-        ]
-    ]
-    )
-    await callback.message.delete()
-    await callback.message.answer("""*Ethereum \(ETH\)*
-                                  
-• `0xc76acc06684b2e2a2d43b9ba3b5f2618cd7a6307`""",parse_mode='MarkdownV2', reply_markup=keyboard)
 
 
 @dp.callback_query(F.data.in_(["ltc"]))
