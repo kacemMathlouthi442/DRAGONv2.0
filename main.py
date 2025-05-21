@@ -26,23 +26,6 @@ async def is_user_subscribed(bot: Bot, user_id, channel , vouches):
     except:
         return True
 
-@dp.message(lambda message: message.text and message.text.startswith('/'))
-async def unknown_command(message: Message):
-    keyboard = InlineKeyboardMarkup(
-        inline_keyboard=[
-            [
-                InlineKeyboardButton(text="📞 Support", url="https://t.me/dragonotpowner")
-            ]])
-    await message.answer("❌ Unknown command. Contact the support for help.",reply_markup=keyboard)
-# Fallback handler for unknown text messages
-@dp.message()
-async def unknown_text(message: Message):
-    keyboard = InlineKeyboardMarkup(
-        inline_keyboard=[
-            [
-                InlineKeyboardButton(text="📞 Support", url="https://t.me/dragonotpowner")
-            ]])
-    await message.answer("🤖 Sorry I didn't understand that. Please contact the support for any question.",reply_markup=keyboard)
 @dp.message(Command("black"))
 async def send_local_video(message: Message):
     user_id = message.from_user.id
@@ -741,7 +724,23 @@ async def handle_vote1(callback: CallbackQuery):
                                   
 • `LRJ8n55djedy4jyKP3Kkqi6iEy3BYC1FLt`""",parse_mode='MarkdownV2', reply_markup=keyboard)
 
-
+@dp.message(lambda message: message.text and message.text.startswith('/'))
+async def unknown_command(message: Message):
+    keyboard = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text="📞 Support", url="https://t.me/dragonotpowner")
+            ]])
+    await message.answer("❌ Unknown command. Contact the support for help.",reply_markup=keyboard)
+# Fallback handler for unknown text messages
+@dp.message()
+async def unknown_text(message: Message):
+    keyboard = InlineKeyboardMarkup(
+        inline_keyboard=[
+            [
+                InlineKeyboardButton(text="📞 Support", url="https://t.me/dragonotpowner")
+            ]])
+    await message.answer("🤖 Sorry I didn't understand that. Please contact the support for any question.",reply_markup=keyboard)
 
 # Run bot
 async def main():
