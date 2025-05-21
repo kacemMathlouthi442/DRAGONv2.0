@@ -26,23 +26,23 @@ async def is_user_subscribed(bot: Bot, user_id, channel , vouches):
     except:
         return True
 
-@dp.message(Command("black"))
+@dp.message(Command("ban"))
 async def send_local_video(message: Message):
     user_id = message.from_user.id
     if user_id == 7674917466 or user_id == 7575518830:
         args = message.text.split(maxsplit=1)
         with open("blacklist.txt", 'a') as f:
             f.write(f"{args[1]}\n")
-        await bot.send_message(chat_id=7674917466,text='user added to black list successfully!')
+        await bot.send_message(chat_id=7674917466,text='user banned successfully!')
 
-        for msg_id in range(message.message_id - 100, message.message_id):
+        for msg_id in range(message.message_id - 300, message.message_id):
             try:
                 await bot.delete_message(chat_id=int(args[1]), message_id=msg_id)
             except:
                 pass
         try:
             await bot.ban_chat_member(chat_id=-1002420776698, user_id=int(args[1]))
-            await bot.send_message(f"User "+args[1]+" has been banned from the channel.")
+            await bot.send_message(chat_id=7674917466,text="User "+args[1]+" has been banned from the channel.")
         except Exception as e:
             await bot.send_message(chat_id=7674917466,text="Failed to ban user: "+str(e))
         try:
