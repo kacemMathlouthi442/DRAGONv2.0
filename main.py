@@ -328,6 +328,17 @@ async def send_local_video(callback: CallbackQuery):
 
     Whether you're testing, analyzing, or automating — DRAGON OTP gives you the tools to dominate with speed, stealth, and precision\.""", reply_markup=keyboard,parse_mode='MarkdownV2')
     else:
+        keyboard = InlineKeyboardMarkup(
+        inline_keyboard=[
+        [
+            InlineKeyboardButton(text="🌐 Community", url="https://t.me/dragonotpchannel"),
+            InlineKeyboardButton(text="✅ Vouches", url="https://t.me/DragonOtp_Vouches1")
+        ],
+        [
+            InlineKeyboardButton(text="📍 I've Subscribed", callback_data="start")
+        ]
+        ]
+        )
         await callback.message.delete()
         await callback.message.answer("""⚠️ *You didn't subscribe yet*
 
